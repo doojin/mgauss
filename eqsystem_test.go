@@ -38,3 +38,15 @@ func Test_swapRows_ShouldSwapRowsInBothMatrix(t *testing.T) {
 	assert.Equal(t, []float64{3}, eqSystem.mB.Row(0).values)
 	assert.Equal(t, []float64{2}, eqSystem.mB.Row(1).values)
 }
+
+func Test_itersCount_ShouldReturnCorrectIterationsCount(t *testing.T) {
+	mA := Matrix{}
+	mA.AddVector(NewVector([]float64{}))
+	mA.AddVector(NewVector([]float64{}))
+	mA.AddVector(NewVector([]float64{}))
+	eqSystem := NewEqSystem(mA, Matrix{})
+
+	itersCount := eqSystem.itersCount()
+
+	assert.Equal(t, 2, itersCount)
+}

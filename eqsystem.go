@@ -18,3 +18,8 @@ func (sys EqSystem) swapRows(pos1 int, pos2 int) {
 	sys.mA.SwapRows(pos1, pos2)
 	sys.mB.SwapRows(pos1, pos2)
 }
+
+// itersCount returns iterations count needed to resolve an equation system
+func (sys EqSystem) itersCount() int {
+	return len(sys.mA.vectors) - 1
+}
