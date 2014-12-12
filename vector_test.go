@@ -28,11 +28,3 @@ func Test_Get_ShouldReturnCorrectElementFromVecotr(t *testing.T) {
 	assert.Equal(t, 0, v.Get(1), "Should be equal")
 	assert.Equal(t, 0.5, v.Get(2), "Should be equal")
 }
-
-func Test_abs_ShouldReturnACopyOfVectorWithAbsFunctionAppliedToAllItsElements(t *testing.T) {
-	v := Vector{[]float64{0, -1, 1, -0.1, 0.1}}
-
-	result := v.abs()
-
-	assert.Equal(t, []float64{0, 1, 1, 0.1, 0.1}, result.values, "Should be equal")
-}
