@@ -13,6 +13,28 @@ func NewEqSystem(mA Matrix, mB Matrix) (sys EqSystem) {
 	return
 }
 
+func (sys EqSystem) doIteration(iter int) {
+	_, vectorIndex := sys.mA.mainElement(iter)
+	sys.swapRows(vectorIndex, iter)
+
+	for i := iter + 1; i < len(sys.mA.vectors); i++ {
+		currentRow := sys.mA.Row(i)
+
+		if currentRow.Get(iter) == 0 {
+			continue
+		}
+
+		coeff := currentRow.Get(iter) / sys.mA.Row(iter).Get(iter)
+
+		sys.mA.Row(iter).Multiplicate(coeff)
+		sys.mB.Row(iter).Multiplicate(coeff)
+
+		sys.mA.Row(i).Subtract(sys.mA.Row(iter))
+		sys.mB.Row(i).Subtract(sys.mB.Row(iter))
+	}
+
+}
+
 // swapRows swaps rows in both: matrix A and matrix B
 func (sys EqSystem) swapRows(pos1 int, pos2 int) {
 	sys.mA.SwapRows(pos1, pos2)
