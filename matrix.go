@@ -13,9 +13,9 @@ func (m *Matrix) AddVector(v Vector) {
 }
 
 // Col return matrix column
-func (m *Matrix) Col(colIndex int) (v Vector) {
+func (m *Matrix) Col(index int) (v Vector) {
 	for _, vector := range m.vectors {
-		value := vector.Get(colIndex)
+		value := vector.Get(index)
 		v.values = append(v.values, value)
 	}
 	return
