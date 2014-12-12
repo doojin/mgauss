@@ -101,3 +101,29 @@ func Test_transform_ShouldTransformCorrectlyIntoTriangularMatrix(t *testing.T) {
 	assert.Equal(t, []float64{2}, eqSystem.mB.Row(1).values)
 	assert.Equal(t, []float64{1}, eqSystem.mB.Row(2).values)
 }
+
+func Test_Solve_ShouldSolveSystemOfOneEquation(t *testing.T) {
+	mA := Matrix{}
+	mA.AddVector(NewVector([]float64{1}))
+	mB := Matrix{}
+	mB.AddVector(NewVector([]float64{5}))
+	eqSystem := NewEqSystem(mA, mB)
+
+	xs := eqSystem.Solve()
+
+	assert.Equal(t, map[int]float64{0: 5}, xs)
+}
+
+func Test_Solve_ShouldSolveSystemOfTwoEquations(t *testing.T) {
+	mA := Matrix{}
+	mA.AddVector(NewVector([]float64{-2, -3}))
+	mA.AddVector(NewVector([]float64{1, 1}))
+	mB := Matrix{}
+	mB.AddVector(NewVector([]float64{0.5}))
+	mB.AddVector(NewVector([]float64{-0.5}))
+	eqSystem := NewEqSystem(mA, mB)
+
+	xs := eqSystem.Solve()
+
+	assert.Equal(t, map[int]float64{1: 0.5, 0: -1}, xs)
+}

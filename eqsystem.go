@@ -13,6 +13,19 @@ func NewEqSystem(mA Matrix, mB Matrix) (sys EqSystem) {
 	return
 }
 
+// Solve solves equation system
+func (sys EqSystem) Solve() map[int]float64 {
+	sys.transform()
+	xs := map[int]float64{}
+
+	for i := len(sys.mA.vectors) - 1; i >= 0; i-- {
+		v := sys.mA.Row(i)
+		dividend := sys.mB.Row(i).Get(0)
+		solveEquation(xs, v, dividend)
+	}
+	return xs
+}
+
 // transform transforms matrix A into triangular matrix
 func (sys EqSystem) transform() {
 	for i := 0; i < len(sys.mA.vectors); i++ {
