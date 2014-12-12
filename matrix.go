@@ -26,6 +26,11 @@ func (m *Matrix) Row(index int) (v Vector) {
 	return m.vectors[index]
 }
 
+// SwapRows swaps two rows
+func (m *Matrix) SwapRows(index1 int, index2 int) {
+	m.vectors[index1], m.vectors[index2] = m.Row(index2), m.Row(index1)
+}
+
 // mainElement returns the "main element" of matrix as well as position of
 // vector it belongs to
 func (m Matrix) mainElement(colIndex int) (v float64, pos int) {

@@ -65,3 +65,14 @@ func Test_mainElement_ShouldReturnTheMainElementOfMatrixDependingOnColumnIndex(t
 	assert.Equal(t, 8, val)
 	assert.Equal(t, 1, index)
 }
+
+func Test_SwapRows_ShouldSwapTwoRows(t *testing.T) {
+	m := Matrix{}
+	m.AddVector(NewVector([]float64{1, 1, 1}))
+	m.AddVector(NewVector([]float64{2, 2, 2}))
+
+	m.SwapRows(0, 1)
+
+	assert.Equal(t, []float64{2, 2, 2}, m.Row(0).values)
+	assert.Equal(t, []float64{1, 1, 1}, m.Row(1).values)
+}
