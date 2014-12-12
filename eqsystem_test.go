@@ -80,3 +80,24 @@ func Test_doIteration_ShouldDoIterationCorrectly(t *testing.T) {
 	assert.Equal(t, []float64{-2.5}, mB.Row(1).values)
 	assert.Equal(t, []float64{8.25}, mB.Row(2).values)
 }
+
+func Test_transform_ShouldTransformCorrectlyIntoTriangularMatrix(t *testing.T) {
+	mA := Matrix{}
+	mA.AddVector(NewVector([]float64{0, 0, 3}))
+	mA.AddVector(NewVector([]float64{0, 2, 0}))
+	mA.AddVector(NewVector([]float64{1, 1, 1}))
+	mB := Matrix{}
+	mB.AddVector(NewVector([]float64{1}))
+	mB.AddVector(NewVector([]float64{2}))
+	mB.AddVector(NewVector([]float64{3}))
+	eqSystem := NewEqSystem(mA, mB)
+
+	eqSystem.transform()
+
+	assert.Equal(t, []float64{1, 1, 1}, eqSystem.mA.Row(0).values)
+	assert.Equal(t, []float64{0, 2, 0}, eqSystem.mA.Row(1).values)
+	assert.Equal(t, []float64{0, 0, 3}, eqSystem.mA.Row(2).values)
+	assert.Equal(t, []float64{3}, eqSystem.mB.Row(0).values)
+	assert.Equal(t, []float64{2}, eqSystem.mB.Row(1).values)
+	assert.Equal(t, []float64{1}, eqSystem.mB.Row(2).values)
+}

@@ -13,6 +13,13 @@ func NewEqSystem(mA Matrix, mB Matrix) (sys EqSystem) {
 	return
 }
 
+// transform transforms matrix A into triangular matrix
+func (sys EqSystem) transform() {
+	for i := 0; i < len(sys.mA.vectors); i++ {
+		sys.doIteration(i)
+	}
+}
+
 func (sys EqSystem) doIteration(iter int) {
 	_, vectorIndex := sys.mA.mainElement(iter)
 	sys.swapRows(vectorIndex, iter)
