@@ -18,6 +18,6 @@ func Test_NewEqSystem_ShouldCreateEquationSystemWithPassedMatrixes(t *testing.T)
 
 	eqSystem := NewEqSystem(mA, mB)
 
-	assert.Equal(t, mA, eqSystem.mA, "Should be equal")
-	assert.Equal(t, mB, eqSystem.mB, "Should be equal")
+	assert.Equal(t, mA, eqSystem.mA)
+	assert.Equal(t, mB, eqSystem.mB)
 }
