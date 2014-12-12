@@ -21,6 +21,11 @@ func (m *Matrix) Col(index int) (v Vector) {
 	return
 }
 
+// Vector returns matrix row by it's index
+func (m *Matrix) Row(index int) (v Vector){
+	return m.vectors[index]
+}
+
 // mainElement returns the "main element" of matrix as well as position of
 // vector it belongs to
 func (m Matrix) mainElement(colIndex int) (v float64, pos int) {
