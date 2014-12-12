@@ -10,3 +10,8 @@ func NewVector(values []float64) (v Vector) {
 	v.values = values
 	return
 }
+
+// Get returns vector's element by it's index
+func (v Vector) Get(index int) float64 {
+	return v.values[index]
+}
