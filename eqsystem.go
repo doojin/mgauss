@@ -12,3 +12,9 @@ func NewEqSystem(mA Matrix, mB Matrix) (sys EqSystem) {
 	sys.mB = mB
 	return
 }
+
+// swapRows swaps rows in both: matrix A and matrix B
+func (sys EqSystem) swapRows(pos1 int, pos2 int) {
+	sys.mA.SwapRows(pos1, pos2)
+	sys.mB.SwapRows(pos1, pos2)
+}
