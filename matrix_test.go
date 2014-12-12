@@ -58,12 +58,25 @@ func Test_mainElement_ShouldReturnTheMainElementOfMatrixDependingOnColumnIndex(t
 	assert.Equal(t, 2, index)
 
 	val, index = m.mainElement(1)
-	assert.Equal(t, 3, val)
-	assert.Equal(t, 0, index)
+	assert.Equal(t, 2, val)
+	assert.Equal(t, 1, index)
 
 	val, index = m.mainElement(2)
-	assert.Equal(t, 8, val)
-	assert.Equal(t, 1, index)
+	assert.Equal(t, 1, val)
+	assert.Equal(t, 2, index)
+}
+
+func Test_mainElement_ShouldNotReturnElementFromZeroRowOnFirstIteration(t *testing.T) {
+	m := Matrix{}
+	m.AddVector(NewVector([]float64{9, 9, 9, 9}))
+	m.AddVector(NewVector([]float64{0, 1, 1, 1}))
+	m.AddVector(NewVector([]float64{0, 2, 2, 2}))
+	m.AddVector(NewVector([]float64{0, -3, 3, 3}))
+
+	val, index := m.mainElement(1)
+
+	assert.Equal(t, val, -3)
+	assert.Equal(t, index, 3)
 }
 
 func Test_SwapRows_ShouldSwapTwoRows(t *testing.T) {

@@ -33,10 +33,11 @@ func (m *Matrix) SwapRows(index1 int, index2 int) {
 
 // mainElement returns the "main element" of matrix as well as position of
 // vector it belongs to
-func (m Matrix) mainElement(colIndex int) (v float64, pos int) {
-	col := m.Col(colIndex)
-	v, pos = math.Abs(col.Get(0)), 0
-	for i, val := range col.values {
+func (m Matrix) mainElement(index int) (v float64, pos int) {
+	col := m.Col(index)
+	v, pos = math.Abs(col.Get(index)), index
+	for i := index; i < len(col.values); i++ {
+		val := col.Get(i)
 		if math.Abs(val) > v {
 			v, pos = val, i
 		}
