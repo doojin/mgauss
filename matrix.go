@@ -12,7 +12,7 @@ func (m *Matrix) AddVector(v Vector) {
 	m.vectors = append(m.vectors, v)
 }
 
-// Col return matrix column
+// Col return matrix column by it's index
 func (m *Matrix) Col(index int) (v Vector) {
 	for _, vector := range m.vectors {
 		value := vector.Get(index)
@@ -21,8 +21,8 @@ func (m *Matrix) Col(index int) (v Vector) {
 	return
 }
 
-// Vector returns matrix row by it's index
-func (m *Matrix) Row(index int) (v Vector){
+// Row returns matrix row by it's index
+func (m *Matrix) Row(index int) (v Vector) {
 	return m.vectors[index]
 }
 
