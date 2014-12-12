@@ -15,3 +15,17 @@ func NewVector(values []float64) (v Vector) {
 func (v Vector) Get(index int) float64 {
 	return v.values[index]
 }
+
+// Multiplicate multiplicates each value of vector and number
+func (v Vector) Multiplicate(number float64) {
+	for i := range v.values {
+		v.values[i] *= number
+	}
+}
+
+// Subtract subtracts one vector from another
+func (v Vector) Subtract(vector Vector) {
+	for i := range v.values {
+		v.values[i] -= vector.values[i]
+	}
+}
