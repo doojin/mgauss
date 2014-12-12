@@ -31,3 +31,22 @@ func Test_Col_ShouldReturnVectorOfMatrixColumnElements(t *testing.T) {
 	assert.Equal(t, Vector{[]float64{-3, 7, -11, 0}}, m.Col(2), "Should be equal")
 	assert.Equal(t, Vector{[]float64{4, -8.5, 12, -16.5}}, m.Col(3), "Should be equal")
 }
+
+func Test_mainElement_ShouldReturnTheMainElementOfMatrixDependingOnColumnIndex(t *testing.T) {
+	m := Matrix{}
+	m.AddVector(NewVector([]float64{2, 3, 0.3}))
+	m.AddVector(NewVector([]float64{-4, 2, 8}))
+	m.AddVector(NewVector([]float64{-5.5, 0, 1}))
+
+	val, index := m.mainElement(0)
+	assert.Equal(t, -5.5, val)
+	assert.Equal(t, 2, index)
+
+	val, index = m.mainElement(1)
+	assert.Equal(t, 3, val)
+	assert.Equal(t, 0, index)
+
+	val, index = m.mainElement(2)
+	assert.Equal(t, 8, val)
+	assert.Equal(t, 1, index)
+}
