@@ -40,6 +40,11 @@ func (m Matrix) Copy() Matrix {
 	return copy
 }
 
+// Vectors returns an array of matrix vectors
+func (m *Matrix) Vectors() []Vector {
+	return m.vectors
+}
+
 // SwapRows swaps two rows
 func (m *Matrix) SwapRows(index1 int, index2 int) {
 	m.vectors[index1], m.vectors[index2] = m.Row(index2), m.Row(index1)
