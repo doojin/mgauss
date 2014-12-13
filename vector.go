@@ -16,6 +16,11 @@ func (v Vector) Get(index int) float64 {
 	return v.values[index]
 }
 
+// Length returns vector's length
+func (v Vector) Length() int {
+	return len(v.values)
+}
+
 // Multiplicate multiplicates each value of vector and number
 func (v Vector) Multiplicate(number float64) {
 	for i := range v.values {

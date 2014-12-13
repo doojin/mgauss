@@ -45,3 +45,11 @@ func Test_Substract_ShouldSubstractOneVectorFromAnotherCorrectly(t *testing.T) {
 
 	assert.Equal(t, []float64{-1, -3, 5, 3}, v1.values)
 }
+
+func Test_Length_ShouldReturnCorrectVectorLength(t *testing.T) {
+	v1 := NewVector([]float64{1, 2, 3, 4, 5})
+
+	length := v1.Length()
+
+	assert.Equal(t, 5, length)
+}
