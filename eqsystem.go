@@ -21,7 +21,7 @@ func (sys EqSystem) Solve() map[int]float64 {
 	for i := len(sys.mA.vectors) - 1; i >= 0; i-- {
 		v := sys.mA.Row(i)
 		dividend := sys.mB.Row(i).Get(0)
-		solveEquation(xs, v, dividend)
+		solveEquation(xs, v, dividend, i)
 	}
 	return xs
 }
@@ -52,7 +52,6 @@ func (sys EqSystem) doIteration(iter int) {
 		sys.mA.Row(i).Subtract(sys.mA.Row(iter))
 		sys.mB.Row(i).Subtract(sys.mB.Row(iter))
 	}
-
 }
 
 // swapRows swaps rows in both: matrix A and matrix B
