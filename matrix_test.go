@@ -89,3 +89,29 @@ func Test_SwapRows_ShouldSwapTwoRows(t *testing.T) {
 	assert.Equal(t, []float64{2, 2, 2}, m.Row(0).values)
 	assert.Equal(t, []float64{1, 1, 1}, m.Row(1).values)
 }
+
+func Test_Copy_ShouldReturnACopyOfMatrix(t *testing.T) {
+	m := Matrix{}
+	m.AddVector(NewVector([]float64{1, 2, 3}))
+	m.AddVector(NewVector([]float64{-0.5, 1.5, 0}))
+
+	copy := m.Copy()
+
+	assert.Equal(t, []float64{1, 2, 3}, copy.Row(0).values)
+	assert.Equal(t, []float64{-0.5, 1.5, 0}, copy.Row(1).values)
+}
+
+func Test_Copy_WhenChangingCopiedMatrixOriginalMatrixShouldNotBeAffected(t *testing.T) {
+	m := Matrix{}
+	m.AddVector(NewVector([]float64{1, 2, 3}))
+	m.AddVector(NewVector([]float64{-0.5, 1.5, 0}))
+
+	copy := m.Copy()
+	copy.Row(0).values[0] = 15
+	copy.AddVector(NewVector([]float64{5, 5, 5}))
+
+	assert.Equal(t, 2, len(m.vectors))
+	assert.Equal(t, 3, len(copy.vectors))
+	assert.Equal(t, []float64{1, 2, 3}, m.Row(0).values)
+	assert.Equal(t, []float64{15, 2, 3}, copy.Row(0).values)
+}

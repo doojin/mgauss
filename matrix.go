@@ -26,6 +26,20 @@ func (m *Matrix) Row(index int) (v Vector) {
 	return m.vectors[index]
 }
 
+// Copy returns a copy of matrix
+func (m Matrix) Copy() Matrix {
+	copy := Matrix{}
+	copy.vectors = []Vector{}
+	for _, v := range m.vectors {
+		vectorValues := []float64{}
+		for _, vectorValue := range v.values {
+			vectorValues = append(vectorValues, vectorValue)
+		}
+		copy.vectors = append(copy.vectors, NewVector(vectorValues))
+	}
+	return copy
+}
+
 // SwapRows swaps two rows
 func (m *Matrix) SwapRows(index1 int, index2 int) {
 	m.vectors[index1], m.vectors[index2] = m.Row(index2), m.Row(index1)
